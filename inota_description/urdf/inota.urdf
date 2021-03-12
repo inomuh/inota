@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="inota">
+<!--BASE -->
+  <!-- Base Footprint -->
+    <link name="base_footprint"/> 
+    
+	<joint name="base_footprint_joint" type="fixed">     	
+		<parent link="base_footprint"/>
+     	<child link="base_link"/>	
+    </joint> 
+    
+	<link name="base_link">	
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<mass value="10.0"/>
+			<inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+		</inertial>
+		
+		<visual>
+			<origin xyz="0 0.272 0" rpy="1.57 0 0" />  
+			<geometry>
+				<mesh filename="package://inota_description/meshes/inota.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.705 0.544 0.233"/> 
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="base_link">
+		<material>Gazebo/DarkGrey</material> 
+	</gazebo>
+	  
+
+<!-- RIGHT WHEEL -->
+	<link name="right_wheel_link">
+	    	<inertial>
+	      	  <mass value="1.0"/>
+	      	  <origin xyz="0.0 0.0 0.0"/>
+		  <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+	    	</inertial>
+
+		<visual>
+			<origin rpy="0 0 1.57" xyz="-0.0003 0 -0.198"/> 
+			<geometry>
+				 <mesh filename="package://inota_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.049" radius="0.098"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="right_wheel_link">
+		<material>Gazebo/Grey</material>
+		<mu1>1.0</mu1>
+		<mu2>1.0</mu2>
+		<kp>1000000.0</kp>
+		<kd>100.0</kd>
+		<minDepth>0.001</minDepth>
+		<maxVel>1.0</maxVel>		
+	</gazebo>
+	
+	<joint name="right_wheel_joint" type="continuous">
+		<axis xyz="0 -1 0"/>
+		<parent link="base_link"/>
+		<child link="right_wheel_link"/>
+		<origin rpy="0 0 0" xyz="0 0.22 -0.052"/>
+		<dynamics damping="0.5"/>
+	</joint>
+
+
+<!-- LEFT WHEEL -->
+	<link name="left_wheel_link">
+	    	<inertial>
+	      	  <mass value="1.0"/>
+	      	  <origin xyz="0.0 0.0 0.0"/>
+		  <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+	    	</inertial>
+
+		<visual>
+			<origin rpy="0 0 1.57" xyz="-0.0003 0 -0.198"/> 
+			<geometry>
+				 <mesh filename="package://inota_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+		
+		<collision>
+			<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.049" radius="0.098"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="left_wheel_link">
+		<material>Gazebo/Grey</material>
+		<mu1>1.0</mu1>
+		<mu2>1.0</mu2>
+		<kp>1000000.0</kp>
+		<kd>100.0</kd>
+		<minDepth>0.001</minDepth>
+		<maxVel>1.0</maxVel>		
+	</gazebo>
+
+	<joint name="left_wheel_joint" type="continuous">
+		<axis xyz="0 -1 0"/>
+		<parent link="base_link"/>
+		<child link="left_wheel_link"/>
+		<origin rpy="0.0 0.0 0.0" xyz="0 -0.22 -0.052"/>
+		<dynamics damping="0.5"/>
+	</joint>
+
+
+<!--FRONT CASTERS -->
+	<link name="left_front_caster">
+		<inertial>
+			<mass value="0.01" />
+			<origin xyz="0 0 0" />
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin rpy="1.57 0 1.57" xyz="-0.022 0 0.0"/>
+			<geometry>
+				<mesh filename="package://inota_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<sphere radius="0.0155"/>				
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="left_front_caster">
+		<material>Gazebo/Grey</material>
+		<mu1>0.2</mu1>
+		<mu2>0.2</mu2>				
+	</gazebo>
+
+	<joint name="left_front_caster_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="left_front_caster"/>
+		<origin rpy="0.0 0.0 0.0" xyz="-0.28 -0.13 -0.132"/>
+		<axis xyz="0 1 0"/>
+	</joint>
+
+	<link name="right_front_caster">
+		<inertial>
+			<mass value="0.01" />
+			<origin xyz="0 0 0" />
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin rpy="1.57 0 1.57" xyz="-0.022 0 -0.0"/>
+			<geometry>
+				<mesh filename="package://inota_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<sphere radius="0.0155"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="right_front_caster">
+		<material>Gazebo/Grey</material>
+		<mu1>0.2</mu1>
+		<mu2>0.2</mu2>			
+	</gazebo>
+
+	<joint name="right_front_caster_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="right_front_caster"/>
+		<origin rpy="0 0 0" xyz="-0.28 0.13 -0.132"/>
+		<axis xyz="0 1 0"/>
+	</joint>	
+
+
+<!--REAR CASTERS -->
+	<link name="left_rear_caster">
+		<inertial>
+			<mass value="0.01" />
+			<origin xyz="0 0 0" />
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin rpy="1.57 0 1.57" xyz="-0.022 0 -0.0"/>
+			<geometry>
+				<mesh filename="package://inota_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<sphere radius="0.0155"/>				
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="left_rear_caster">
+		<material>Gazebo/Grey</material>
+		<mu1>0.2</mu1>
+		<mu2>0.2</mu2>				
+	</gazebo>
+
+	<joint name="left_rear_caster_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="left_rear_caster"/>
+		<origin rpy="0.0 0.0 0.0" xyz="0.26 -0.13 -0.132"/>
+		<axis xyz="0 1 0"/>
+	</joint>
+
+	<link name="right_rear_caster">
+		<inertial>
+			<mass value="0.01" />
+			<origin xyz="0 0 0" />
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin rpy="1.57 0 1.57" xyz="-0.022 0 -0.0"/>
+			<geometry>
+				<mesh filename="package://inota_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<sphere radius="0.0155"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<gazebo reference="right_rear_caster">
+		<material>Gazebo/Grey</material>
+		<mu1>0.2</mu1>
+		<mu2>0.2</mu2>			
+	</gazebo>
+
+	<joint name="right_rear_caster_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="right_rear_caster"/>
+		<origin rpy="0 0 0" xyz="0.26 0.13 -0.132"/>
+		<axis xyz="0 1 0"/>
+	</joint>	
+
+<!-- Realsense Camera -->
+	    <link name="camera_link">
+		    <visual>
+			<origin xyz="-0.03 0 0" rpy="-1.57 0 -1.57"/>
+			<geometry>
+			    <mesh filename="package://inota_description/meshes/camera.stl" scale="0.001 0.001 0.001"/> 
+			</geometry>
+		    </visual>
+	    </link>
+
+	    <joint name="camera_joint" type="fixed">
+			<origin xyz="-0.36 0.001 0.0795" rpy="0 0 3.14"/>
+			<parent link="base_link"/>
+			<child link="camera_link"/>
+	    </joint>
+
+	    <joint name="camera_rgb_joint" type="fixed">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<parent link="camera_link"/>
+			<child link="camera_rgb_frame"/>
+	    </joint>
+		 
+	    <link name="camera_rgb_frame"/>
+
+	    <joint name="camera_rgb_optic_joint" type="fixed">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<parent link="camera_rgb_frame"/>
+			<child link="camera_rgb_optic_frame"/>
+	    </joint>
+     
+   	 <link name="camera_rgb_optic_frame"/>
+
+	  <gazebo reference="camera_link">
+	    <material>Gazebo/Grey</material>
+	    <sensor type="camera" name="Realsense_Camera_RGB">
+	      <always_on>true</always_on>
+	      <visualize>false</visualize>
+		<camera>
+		   <horizontal_fov>1.3962634</horizontal_fov>
+		   <image>
+			<width>640</width>
+			<height>480</height>
+			<format>R8G8B8</format>
+		   </image>
+		   <clip>
+			<near>0.02</near>
+			<far>300</far>
+		   </clip>
+		   <noise>
+			<type>gaussian</type>
+			<!-- Noise is sampled independently per pixel on each frame.
+			       That pixel's noise value is added to each of its color
+			       channels, which at that point lie in the range [0,1]. -->
+			<mean>0.0</mean>
+			<stddev>0.007</stddev>
+		   </noise>
+	      </camera>
+	      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+		<alwaysOn>true</alwaysOn>
+		<updateRate>30.0</updateRate>
+		<cameraName>Realsense_Camera_RGB</cameraName>
+		<frameName>camera_rgb_optic_frame</frameName>
+		<imageTopicName>RGB/image_raw</imageTopicName>
+		<cameraInfoTopicName>RGB/camera_info</cameraInfoTopicName>
+		<hackBaseline>0.07</hackBaseline>
+		<distortionK1>0.0</distortionK1>
+		<distortionK2>0.0</distortionK2>
+		<distortionK3>0.0</distortionK3>
+		<distortionT1>0.0</distortionT1>
+		<distortionT2>0.0</distortionT2>
+	      </plugin>
+	    </sensor>
+	  </gazebo>
+  
+	
+<!--LIDAR -->
+	<link name="lidar_link">
+		<visual>
+			<origin xyz="0.01 0.03 -0.016" rpy="1.57 0.0 0"/>
+			<geometry>
+				<mesh filename="package://inota_description/meshes/lidar.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</visual>	
+
+	</link>
+
+	<joint name="lidar_joint" type="fixed">
+		<origin xyz="-0.28 0.001 0.029" rpy="0 0 3.14"/>
+		<parent link="base_link"/>
+		<child link="lidar_link"/>
+	</joint>
+
+	<gazebo reference="lidar_link">
+		<material>Gazebo/Grey</material>
+		<sensor type="gpu_ray" name="head_hokuyo_sensor">
+			<pose>0 0 0 0 0 0</pose>
+			<visualize>false</visualize>
+			<update_rate>40</update_rate>
+			<ray>
+				<scan>
+					<horizontal>
+						<samples>720</samples>
+						<resolution>1</resolution>
+						<min_angle>-1.5708</min_angle>
+						<max_angle>1.5708</max_angle>
+					</horizontal>
+				</scan>
+				<range>
+					<min>0.5</min>
+					<max>5.0</max>
+					<resolution>0.1</resolution>
+				</range>
+				<noise>
+					<type>gaussian</type>
+					<mean>0.0</mean>
+					<stddev>0.01</stddev>
+				</noise>
+			</ray>
+
+    		<plugin name="lidar_controller" filename="libgazebo_ros_gpu_laser.so">
+				<topicName>lidar</topicName>
+				<frameName>lidar_link</frameName>
+				<robotNamespace>/</robotNamespace>
+			</plugin> 
+		</sensor>
+	</gazebo> 
+
+
+<!-- Diff Drive Controller Plugin-->
+	<gazebo>
+		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+			<alwaysOn>true</alwaysOn>
+			<updateRate>10.0</updateRate> 
+			<robotBaseFrame>base_link</robotBaseFrame>
+			<publishWheelTF>true</publishWheelTF>
+			<publishWheelJointState>true</publishWheelJointState>
+			<wheelAcceleration>1</wheelAcceleration>
+			<rightJoint>right_wheel_joint</rightJoint>
+			<leftJoint>left_wheel_joint</leftJoint>
+			<wheelSeparation>0.42</wheelSeparation>
+			<wheelDiameter>0.2</wheelDiameter>
+			<wheelTorque>10</wheelTorque>
+			<commandTopic>cmd_vel</commandTopic>
+			<odometryTopic>odom</odometryTopic>
+			<odometryFrame>odom</odometryFrame>
+			<robotNamespace>/</robotNamespace>
+			<legacyMode>true</legacyMode>
+			<publishTf>true</publishTf>
+		</plugin>
+	</gazebo>	
+	
+<!-- Gazebo ROS Control Plugin -->
+
+	  <gazebo>
+	  	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	    	<robotNamespace>inota</robotNamespace>
+	    	<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+	  	</plugin>
+	  </gazebo>
+  
+	<gazebo>
+	
+		<plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+		<robotNamespace>/</robotNamespace>
+			<jointName>right_wheel_joint,left_wheel_joint</jointName>
+			<updateRate>10.0</updateRate>
+			<alwaysOn>true</alwaysOn>
+		</plugin>
+    </gazebo>
+</robot>
