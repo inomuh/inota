@@ -61,7 +61,7 @@ Visualization Manager:
       Collision Enabled: false
       Enabled: true
       Links:
-        All Links Enabled: false
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -74,12 +74,12 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: false
+          Value: true
         camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: false
+          Value: true
         camera_rgb_frame:
           Alpha: 1
           Show Axes: false
@@ -103,11 +103,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        lidar_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         right_front_caster:
           Alpha: 1
           Show Axes: false
@@ -119,6 +114,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        scan_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -150,14 +150,14 @@ Visualization Manager:
           Value: false
         left_wheel_link:
           Value: false
-        lidar_link:
-          Value: true
         right_front_caster:
           Value: false
         right_rear_caster:
           Value: false
         right_wheel_link:
           Value: false
+        scan_link:
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -177,13 +177,13 @@ Visualization Manager:
               {}
             left_wheel_link:
               {}
-            lidar_link:
-              {}
             right_front_caster:
               {}
             right_rear_caster:
               {}
             right_wheel_link:
+              {}
+            scan_link:
               {}
       Update Interval: 0
       Value: true
@@ -215,7 +215,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.17698048055171967
+      Distance: 0.3748047947883606
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -223,17 +223,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.39703306555747986
-        Y: 0.01903598941862583
-        Z: 0.03135726600885391
+        X: 0.31169891357421875
+        Y: 0.03331920877099037
+        Z: 0.017846135422587395
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2992318868637085
+      Pitch: 0.32377755641937256
       Target Frame: <Fixed Frame>
-      Yaw: 3.203716993331909
+      Yaw: 6.247370719909668
     Saved: ~
 Window Geometry:
   Displays:
