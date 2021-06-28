@@ -402,15 +402,15 @@
 		<material>Gazebo/Grey</material>
 		<sensor type="gpu_ray" name="sick_tim_7xx">
 			<pose>0 0 0 0 0 0</pose>
-			<visualize>true</visualize>
+			<visualize>false</visualize>
 			<update_rate>15</update_rate>
 			<ray>
 				<scan>
 					<horizontal>
 						<samples>380</samples>
 						<resolution>1</resolution>
-						<min_angle>-2.35619449</min_angle>
-						<max_angle>2.35619449</max_angle>
+						<min_angle>-1.570796</min_angle>
+						<max_angle>1.570796</max_angle>
 					</horizontal>
 				</scan>
 				<range>
@@ -438,7 +438,7 @@
 	<gazebo>
 		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 			<alwaysOn>true</alwaysOn>
-			<updateRate>10.0</updateRate> 
+			<updateRate>30</updateRate> 
 			<robotBaseFrame>base_link</robotBaseFrame>
 			<publishWheelTF>true</publishWheelTF>
 			<publishWheelJointState>true</publishWheelJointState>
@@ -451,13 +451,12 @@
 			<commandTopic>cmd_vel</commandTopic>
 			<odometryTopic>odom</odometryTopic>
 			<odometryFrame>odom</odometryFrame>
-			<robotNamespace>/</robotNamespace>
 			<legacyMode>true</legacyMode>
 			<publishTf>true</publishTf>
 		</plugin>
 	</gazebo>	
 	
-<!-- Gazebo ROS Control Plugin -->
+<!-- Gazebo ROS Control Plugin
 
 	  <gazebo>
 	  	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -465,7 +464,7 @@
 	    	<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 	  	</plugin>
 	  </gazebo>
-  
+   
 	<gazebo>
 	
 		<plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
@@ -474,5 +473,5 @@
 			<updateRate>10.0</updateRate>
 			<alwaysOn>true</alwaysOn>
 		</plugin>
-    </gazebo>
+    </gazebo>-->
 </robot>

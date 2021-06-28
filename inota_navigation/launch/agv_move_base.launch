@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+	  <!--- Run Move Base -->
+	  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" >
+	   <rosparam file="$(find inota_navigation)/params/agv_move_base.yaml" command="load"/>
+	   <rosparam file="$(find inota_navigation)/params/agv_common.yaml" command="load" ns="global_costmap"/>
+	   <rosparam file="$(find inota_navigation)/params/agv_common.yaml" command="load" ns="local_costmap"/>
+	   <rosparam file="$(find inota_navigation)/params/agv_local.yaml" command="load" />
+	   <rosparam file="$(find inota_navigation)/params/agv_global.yaml" command="load" />
+	   <rosparam file="$(find inota_navigation)/params/agv_base_local.yaml" command="load" />
+
+  </node>
+
+</launch>
+
+

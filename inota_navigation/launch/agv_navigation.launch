@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- Run Gazebo -->
+  <include file="$(find inota_simulation)/launch/inota_depo.launch"/>
+
+  <!-- Run the map server -->
+  <arg name="map_file" default="$(find inota_navigation)/map/cropped.yaml"/> <!-- map17022021_shelter -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!--- Run Move Base -->
+  <include file="$(find inota_navigation)/launch/agv_move_base.launch" />
+
+  <!--- Run AMCL -->
+  <include file="$(find inota_navigation)/launch/agv_amcl.launch" />
+
+
+</launch>
