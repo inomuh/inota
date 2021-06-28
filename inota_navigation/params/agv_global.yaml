@@ -6,4 +6,4 @@ global_costmap:
   width: 25.0
   height: 25.0
   inflation_layer: 
-    inflation_radius: 0.1  #0.01    # Global pathteki mesafeyi genisletiyor
+    inflation_radius: 0.5  #0.01    # Global pathteki mesafeyi genisletiyor
